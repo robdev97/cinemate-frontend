@@ -13,6 +13,8 @@ public class MovieDto {
 
     private Long id;
     private String title;
-    private String director;
-    private int releaseYear;
+    private String genre;
+    private Integer releaseYear;
+    private Double rating;
+    private String description;
 }

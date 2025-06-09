@@ -10,8 +10,8 @@ public class FriendClient {
 
     public List<FriendDto> fetchFriends() {
         return List.of(
-                new FriendDto(1L, "anita_film", "anita@example.com"),
-                new FriendDto(2L, "movie_buff", "buff@example.com")
+                new FriendDto(1L, 1L, 2L, "ACCEPTED"),
+                new FriendDto(2L, 2L, 3L, "PENDING")
         );
     }
 }

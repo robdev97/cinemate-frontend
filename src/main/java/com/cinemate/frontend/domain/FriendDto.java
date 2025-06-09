@@ -12,6 +12,7 @@ import lombok.Setter;
 public class FriendDto {
 
     private Long id;
-    private String username;
-    private String email;
+    private Long userId;
+    private Long friendUserId;
+    private String status;
 }

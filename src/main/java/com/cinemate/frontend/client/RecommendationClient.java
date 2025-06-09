@@ -10,9 +10,9 @@ public class RecommendationClient {
 
     public List<RecommendationDto> fetchRecommendations() {
         return List.of(
-                new RecommendationDto("Inception", "based on your favorite director"),
-                new RecommendationDto("Blade Runner 2049", "popular among your friends"),
-                new RecommendationDto("Arrival", "Sci-Fi genre match")
+                new RecommendationDto("Based on your favorite director"),
+                new RecommendationDto("Popular among your friends"),
+                new RecommendationDto("Sci-Fi genre match")
         );
     }
 }

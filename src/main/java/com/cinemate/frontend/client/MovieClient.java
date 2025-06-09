@@ -2,21 +2,19 @@ package com.cinemate.frontend.client;
 
 import com.cinemate.frontend.domain.MovieDto;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
 public class MovieClient {
+
+    private final RestTemplate restTemplate = new RestTemplate();
+    private final String backendUrl = "http://localhost:8080/api/movies";
+
     public List<MovieDto> fetchMovies() {
-        List<MovieDto> movies = new ArrayList<>();
-
-        movies.add(new MovieDto(1L, "Inception", "Christopher Nolan", 2010));
-        movies.add(new MovieDto(2L, "The Matrix", "Wachowskis", 1999));
-        movies.add(new MovieDto(3L, "Interstellar", "Christopher Nolan", 2014));
-        movies.add(new MovieDto(4L, "The Godfather", "Francis Ford Coppola", 1972));
-        movies.add(new MovieDto(5L, "Pulp Fiction", "Quentin Tarantino", 1994));
-
-        return movies;
+        MovieDto[] movies = restTemplate.getForObject(backendUrl, MovieDto[].class);
+        return Arrays.asList(movies);
     }
 }
