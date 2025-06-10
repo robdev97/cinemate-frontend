@@ -1,22 +1,26 @@
-    package com.cinemate.frontend.client;
+package com.cinemate.frontend.client;
 
+import com.cinemate.frontend.domain.UserDto;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import java.util.Arrays;
+import java.util.List;
 
-    import com.cinemate.frontend.domain.UserDto;
-    import org.springframework.stereotype.Component;
+@Service
+public class UserClient {
 
-    import java.util.ArrayList;
-    import java.util.List;
+    private final RestTemplate restTemplate = new RestTemplate();
+    private static final String BASE_URL = "http://localhost:8080/api/users";
 
-    @Component
-    public class UserClient {
-
-        public List<UserDto> fetchUsers() {
-            List<UserDto> users = new ArrayList<>();
-
-            users.add(new UserDto(1L, "robert", "Pass1", "robert@example.com", "Robert Lit"));
-            users.add(new UserDto(2L, "Anita", "Pass2", "anita@example.com", "Anita Ani"));
-            users.add(new UserDto(3L, "Kacpet", "Pass3", "kacper@example.com", "Kacper Kapo"));
-
-            return users;
-        }
+    public List<UserDto> getAllUsers() {
+        UserDto[] response = restTemplate.getForObject(BASE_URL, UserDto[].class);
+        return Arrays.asList(response);
     }
+
+    public void createUser(UserDto userDto) {
+        restTemplate.postForObject(BASE_URL, userDto, UserDto.class);
+    }
+    public void deleteUser(Long userId) {
+        restTemplate.delete(BASE_URL + "/" + userId);
+    }
+}

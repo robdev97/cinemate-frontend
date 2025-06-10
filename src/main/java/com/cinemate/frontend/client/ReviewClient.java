@@ -1,18 +1,23 @@
 package com.cinemate.frontend.client;
 
 import com.cinemate.frontend.domain.ReviewDto;
-import org.springframework.stereotype.Component;
-
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import java.util.Arrays;
 import java.util.List;
 
-@Component
+@Service
 public class ReviewClient {
 
-    public List<ReviewDto> fetchReviews() {
-        return List.of(
-                new ReviewDto("robert_dev", "Inception", 9, "Great movie with mind-bending plot."),
-                new ReviewDto("anita_film", "Inception", 8, "Amazing visuals and story."),
-                new ReviewDto("movie_buff", "Inception", 10, "Masterpiece.")
-        );
+    private final RestTemplate restTemplate = new RestTemplate();
+    private static final String BASE_URL = "http://localhost:8080/api/reviews";
+
+    public List<ReviewDto> getAllReviews() {
+        ReviewDto[] response = restTemplate.getForObject(BASE_URL, ReviewDto[].class);
+        return Arrays.asList(response);
+    }
+
+    public void createReview(ReviewDto reviewDto) {
+        restTemplate.postForObject(BASE_URL, reviewDto, ReviewDto.class);
     }
 }

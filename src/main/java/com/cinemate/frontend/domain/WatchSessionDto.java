@@ -1,21 +1,18 @@
 package com.cinemate.frontend.domain;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class WatchSessionDto {
     private Long id;
+    private Long movieId;
     private String movieTitle;
-    private String hostUsername;
-    private LocalDateTime scheduledDateTime;
-    private String status;
+    private LocalDateTime scheduledAt;
+    private String location;
 }

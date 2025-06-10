@@ -1,20 +1,15 @@
 package com.cinemate.frontend.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class MovieDto {
-
     private Long id;
     private String title;
-    private String genre;
-    private Integer releaseYear;
-    private Double rating;
-    private String description;
+    private String director;
+    private int year;
 }
